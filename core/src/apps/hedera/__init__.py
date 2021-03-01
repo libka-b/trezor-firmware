@@ -1,0 +1,5 @@
+from apps.common.paths import PATTERN_BIP44
+
+CURVE = "ed25519"
+SLIP44_ID = 3030
+PATTERN = PATTERN_BIP44

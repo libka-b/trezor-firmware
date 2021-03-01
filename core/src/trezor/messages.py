@@ -3023,6 +3023,260 @@ if TYPE_CHECKING:
         def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["EosActionUnknown"]:
             return isinstance(msg, cls)
 
+    class HederaKey(protobuf.MessageType):
+        ed25519: "bytes | None"
+
+        def __init__(
+            self,
+            *,
+            ed25519: "bytes | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaKey"]:
+            return isinstance(msg, cls)
+
+    class HederaId(protobuf.MessageType):
+        shardNum: "int | None"
+        realmNum: "int | None"
+        tokenNum: "int | None"
+
+        def __init__(
+            self,
+            *,
+            shardNum: "int | None" = None,
+            realmNum: "int | None" = None,
+            tokenNum: "int | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaId"]:
+            return isinstance(msg, cls)
+
+    class HederaTimestamp(protobuf.MessageType):
+        seconds: "int | None"
+        nanos: "int | None"
+
+        def __init__(
+            self,
+            *,
+            seconds: "int | None" = None,
+            nanos: "int | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaTimestamp"]:
+            return isinstance(msg, cls)
+
+    class HederaDuration(protobuf.MessageType):
+        seconds: "int | None"
+
+        def __init__(
+            self,
+            *,
+            seconds: "int | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaDuration"]:
+            return isinstance(msg, cls)
+
+    class HederaTransactionID(protobuf.MessageType):
+        accountID: "HederaId | None"
+
+        def __init__(
+            self,
+            *,
+            accountID: "HederaId | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaTransactionID"]:
+            return isinstance(msg, cls)
+
+    class HederaCryptoCreateTransactionBody(protobuf.MessageType):
+        initialBalance: "int | None"
+
+        def __init__(
+            self,
+            *,
+            initialBalance: "int | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaCryptoCreateTransactionBody"]:
+            return isinstance(msg, cls)
+
+    class HederaAccountAmount(protobuf.MessageType):
+        accountID: "HederaId | None"
+        amount: "int | None"
+
+        def __init__(
+            self,
+            *,
+            accountID: "HederaId | None" = None,
+            amount: "int | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaAccountAmount"]:
+            return isinstance(msg, cls)
+
+    class HederaTransferList(protobuf.MessageType):
+        accountAmounts: "list[HederaAccountAmount]"
+
+        def __init__(
+            self,
+            *,
+            accountAmounts: "list[HederaAccountAmount] | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaTransferList"]:
+            return isinstance(msg, cls)
+
+    class HederaTokenTransferList(protobuf.MessageType):
+        token: "HederaId | None"
+        accountAmounts: "list[HederaAccountAmount]"
+
+        def __init__(
+            self,
+            *,
+            accountAmounts: "list[HederaAccountAmount] | None" = None,
+            token: "HederaId | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaTokenTransferList"]:
+            return isinstance(msg, cls)
+
+    class HederaCryptoTransferTransactionBody(protobuf.MessageType):
+        transfers: "HederaTransferList | None"
+        tokenTransfers: "list[HederaTokenTransferList]"
+
+        def __init__(
+            self,
+            *,
+            tokenTransfers: "list[HederaTokenTransferList] | None" = None,
+            transfers: "HederaTransferList | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaCryptoTransferTransactionBody"]:
+            return isinstance(msg, cls)
+
+    class HederaTokenAssociateBody(protobuf.MessageType):
+        account: "HederaId | None"
+        tokens: "list[HederaId]"
+
+        def __init__(
+            self,
+            *,
+            tokens: "list[HederaId] | None" = None,
+            account: "HederaId | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaTokenAssociateBody"]:
+            return isinstance(msg, cls)
+
+    class HederaTransactionBody(protobuf.MessageType):
+        transactionID: "HederaTransactionID | None"
+        transactionFee: "int | None"
+        memo: "str | None"
+        cryptoCreateAccount: "HederaCryptoCreateTransactionBody | None"
+        cryptoTransfer: "HederaCryptoTransferTransactionBody | None"
+        tokenAssociate: "HederaTokenAssociateBody | None"
+
+        def __init__(
+            self,
+            *,
+            transactionID: "HederaTransactionID | None" = None,
+            transactionFee: "int | None" = None,
+            memo: "str | None" = None,
+            cryptoCreateAccount: "HederaCryptoCreateTransactionBody | None" = None,
+            cryptoTransfer: "HederaCryptoTransferTransactionBody | None" = None,
+            tokenAssociate: "HederaTokenAssociateBody | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaTransactionBody"]:
+            return isinstance(msg, cls)
+
+    class HederaPublicKey(protobuf.MessageType):
+        publicKey: "bytes | None"
+
+        def __init__(
+            self,
+            *,
+            publicKey: "bytes | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaPublicKey"]:
+            return isinstance(msg, cls)
+
+    class HederaGetPublicKey(protobuf.MessageType):
+        address_n: "list[int]"
+        show_display: "bool | None"
+
+        def __init__(
+            self,
+            *,
+            address_n: "list[int] | None" = None,
+            show_display: "bool | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaGetPublicKey"]:
+            return isinstance(msg, cls)
+
+    class HederaSignedTx(protobuf.MessageType):
+        signature: "bytes | None"
+
+        def __init__(
+            self,
+            *,
+            signature: "bytes | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaSignedTx"]:
+            return isinstance(msg, cls)
+
+    class HederaSignTx(protobuf.MessageType):
+        publicKey: "bytes | None"
+        tx: "HederaTransactionBody | None"
+        decimals: "int | None"
+
+        def __init__(
+            self,
+            *,
+            publicKey: "bytes | None" = None,
+            tx: "HederaTransactionBody | None" = None,
+            decimals: "int | None" = None,
+        ) -> None:
+            pass
+
+        @classmethod
+        def is_type_of(cls, msg: protobuf.MessageType) -> TypeGuard["HederaSignTx"]:
+            return isinstance(msg, cls)
+
     class EthereumGetPublicKey(protobuf.MessageType):
         address_n: "list[int]"
         show_display: "bool | None"
